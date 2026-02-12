@@ -75,7 +75,7 @@ export function ContactSection() {
                             </div>
                         </a>
 
-                        <a href="mailto:muhdnurirfanmohdariff@gmail.com" className="block group">
+                        <a href="mailto:mnifanmohdariff@gmail.com" className="block group">
                             <div className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-neutral-900/50 hover:bg-neutral-900 hover:border-white/20 transition-all duration-300 group-hover:translate-x-1">
                                 <div className="flex items-center gap-4">
                                     <div className="p-2 rounded-md bg-neutral-800 text-white group-hover:bg-red-500 transition-colors">
@@ -83,7 +83,7 @@ export function ContactSection() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-sm font-bold text-white group-hover:text-red-400 transition-colors">Email</span>
-                                        <span className="text-xs text-neutral-500 font-mono">muhdnurirfanmohdariff@gmail.com</span>
+                                        <span className="text-xs text-neutral-500 font-mono">mnifanmohdariff@gmail.com</span>
                                     </div>
                                 </div>
                                 <ArrowRight className="w-4 h-4 text-neutral-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transform duration-300" />
@@ -94,55 +94,122 @@ export function ContactSection() {
 
                 {/* Right Column: Secure Transmission Form */}
                 <div className="p-8 md:p-12 bg-black relative">
-                    <div className="absolute top-0 right-0 p-4 opacity-20">
-                        <div className="flex gap-1">
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                        </div>
-                    </div>
-
-                    <form className="space-y-6 h-full flex flex-col justify-center">
-                        <div className="space-y-4">
-                            <div className="space-y-2">
-                                <label htmlFor="name" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Identity Name</label>
-                                <Input
-                                    id="name"
-                                    placeholder="ENTER_NAME"
-                                    className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Return Address (Email)</label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    placeholder="ENTER_EMAIL"
-                                    className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none h-12"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="message" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Transmission Data</label>
-                                <Textarea
-                                    id="message"
-                                    placeholder="TYPE_MESSAGE..."
-                                    className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none min-h-[150px] resize-none"
-                                />
-                            </div>
-                        </div>
-
-                        <Button className="w-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-widest h-12 border border-white/20 relative group overflow-hidden">
-                            <span className="relative z-10 flex items-center justify-center gap-2">
-                                [ TRANSMIT_MESSAGE ]
-                            </span>
-                            <div className="absolute inset-0 bg-neutral-900 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 z-0" />
-                            <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                [ SENDING... ]
-                            </span>
-                        </Button>
-                    </form>
+                    <ContactForm />
                 </div>
             </div>
         </motion.section>
+    );
+}
+
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+import { sendEmail } from "@/lib/actions/send-email";
+
+// Define the shape of the state
+type ContactFormState = {
+    success: boolean;
+    message?: string;
+    error?: string;
+};
+
+const initialState: ContactFormState = {
+    success: false,
+    message: "",
+    error: ""
+};
+
+function ContactForm() {
+    const [state, formAction] = useActionState(sendEmail, initialState);
+
+    return (
+        <>
+            <div className="absolute top-0 right-0 p-4 opacity-20">
+                <div className="flex gap-1">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                </div>
+            </div>
+
+            <form action={formAction} className="space-y-6 h-full flex flex-col justify-center">
+                <div className="space-y-4">
+                    <div className="space-y-2">
+                        <label htmlFor="name" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Identity Name</label>
+                        <Input
+                            id="name"
+                            name="name"
+                            placeholder="ENTER_NAME"
+                            required
+                            className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none h-12"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="email" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Return Address (Email)</label>
+                        <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="ENTER_EMAIL"
+                            required
+                            className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none h-12"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="message" className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Transmission Data</label>
+                        <Textarea
+                            id="message"
+                            name="message"
+                            placeholder="TYPE_MESSAGE..."
+                            required
+                            className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-700 font-mono focus:border-white/20 focus:ring-0 rounded-none min-h-[150px] resize-none"
+                        />
+                    </div>
+                </div>
+
+                <SubmitButton />
+
+                {state?.success && (
+                    <p className="text-green-500 text-xs font-mono mt-2">
+                        &gt; {state.message}
+                    </p>
+                )}
+                {state?.error && (
+                    <p className="text-red-500 text-xs font-mono mt-2">
+                        &gt; ERROR: {state.error}
+                    </p>
+                )}
+            </form>
+        </>
+    );
+}
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button
+            disabled={pending}
+            type="submit"
+            className="w-full bg-white text-black hover:bg-neutral-200 font-mono text-xs uppercase tracking-widest h-12 border border-white/20 relative group overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+            <span className={`relative z-10 flex items-center justify-center gap-2 ${pending ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
+                [ TRANSMIT_MESSAGE ]
+            </span>
+
+            {!pending && (
+                <>
+                    <div className="absolute inset-0 bg-neutral-900 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 z-0" />
+                    <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        [ SENDING... ]
+                    </span>
+                </>
+            )}
+
+            {pending && (
+                <span className="absolute inset-0 z-20 flex items-center justify-center gap-2 text-black animate-pulse">
+                    [ TRANSMITTING... ]
+                </span>
+            )}
+        </Button>
     );
 }

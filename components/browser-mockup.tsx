@@ -10,7 +10,7 @@ interface BrowserMockupProps {
 
 export function BrowserMockup({ appName = "Browser", url = "localhost:3000", imageSrc }: BrowserMockupProps) {
     return (
-        <div className="w-full h-full bg-neutral-900 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative group-hover/bento:scale-105 transition-transform duration-500">
+        <div className="w-full aspect-[16/10] md:aspect-auto md:h-full bg-neutral-900 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative group-hover/bento:scale-105 transition-transform duration-500">
             {/* Search Bar / Header */}
             <div className="flex items-center gap-2 px-3 py-2 bg-neutral-950/80 border-b border-white/5 backdrop-blur-sm">
                 <div className="flex gap-1.5">

@@ -1,11 +1,12 @@
 "use client";
 
-import { Command } from "lucide-react";
+import { Command, Check, FileText, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function CommandPalette() {
     const [open, setOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
@@ -62,12 +63,40 @@ export function CommandPalette() {
                             </div>
                             <div className="p-2">
                                 <div className="px-2 py-1.5 text-xs font-medium text-zinc-500">Suggestions</div>
-                                <div className="group flex cursor-pointer items-center rounded-sm px-2 py-2 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors">
-                                    <span>Copy Email</span>
-                                    <span className="ml-auto text-xs text-zinc-600">muhdnurirfanmohdariff@gmail.com</span>
+
+                                {/* Copy Email Command */}
+                                <div
+                                    className="group flex cursor-pointer items-center rounded-sm px-2 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText("mnifanmohdariff@gmail.com");
+                                        setCopied(true);
+                                        setTimeout(() => setCopied(false), 2000);
+                                    }}
+                                >
+                                    <Mail className="mr-2 h-4 w-4 text-zinc-500 group-hover:text-white transition-colors" />
+                                    <span>{copied ? "Copied!" : "Copy Email"}</span>
+                                    {copied ? (
+                                        <Check className="ml-auto h-4 w-4 text-green-500" />
+                                    ) : (
+                                        <span className="ml-auto text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors">mnifanmohdariff@gmail.com</span>
+                                    )}
                                 </div>
-                                <div className="group flex cursor-pointer items-center rounded-sm px-2 py-2 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors">
+
+                                {/* View Resume Command */}
+                                <div
+                                    className="group flex cursor-pointer items-center rounded-sm px-2 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+                                    onClick={() => {
+                                        // ------------------------------------------------------------------
+                                        // TODO: PLACE YOUR RESUME FILE IN THE 'public' FOLDER
+                                        // AND RENAME IT TO 'resume.pdf' OR UPDATE THE PATH BELOW.
+                                        // ------------------------------------------------------------------
+                                        window.open("/resume.pdf", "_blank");
+                                        setOpen(false);
+                                    }}
+                                >
+                                    <FileText className="mr-2 h-4 w-4 text-zinc-500 group-hover:text-white transition-colors" />
                                     <span>View Resume</span>
+                                    <span className="ml-auto text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors">PDF</span>
                                 </div>
                             </div>
                         </div>

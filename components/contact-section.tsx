@@ -60,7 +60,7 @@ export function ContactSection() {
                             </div>
                         </a>
 
-                        <a href="https://www.linkedin.com/in/nur-irfan-20691a264/" target="_blank" rel="noopener noreferrer" className="block group">
+                        <a href="https://www.linkedin.com/in/irfan-ariff-20691a264/" target="_blank" rel="noopener noreferrer" className="block group">
                             <div className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-neutral-900/50 hover:bg-neutral-900 hover:border-white/20 transition-all duration-300 group-hover:translate-x-1">
                                 <div className="flex items-center gap-4">
                                     <div className="p-2 rounded-md bg-neutral-800 text-white group-hover:bg-blue-600 transition-colors">

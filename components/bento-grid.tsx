@@ -30,6 +30,7 @@ export const BentoGridItem = ({
     header,
     icon,
     children,
+    isLatest = false,
 }: {
     className?: string;
     title?: string | ReactNode;
@@ -37,16 +38,27 @@ export const BentoGridItem = ({
     header?: ReactNode;
     icon?: ReactNode;
     children?: ReactNode;
+    isLatest?: boolean;
 }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isLatest
+                ? { opacity: 0, scale: 0.92, y: 30 }
+                : { opacity: 0, y: 20 }
+            }
+            whileInView={isLatest
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 1, y: 0 }
+            }
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={isLatest
+                ? { duration: 0.8, ease: "easeOut" }
+                : { duration: 0.4 }
+            }
             whileHover={{ scale: 1.01 }}
             className={cn(
                 "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4 glow-border bg-stone-950",
+                isLatest ? "border-green-500/20 latest-glow" : "",
                 className
             )}
         >

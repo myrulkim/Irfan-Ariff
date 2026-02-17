@@ -101,6 +101,10 @@
 }
 
 /* Custom Effects */
+.latest-glow {
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.08), 0 0 60px rgba(74, 222, 128, 0.04);
+}
+
 .glow-border {
   position: relative;
 }

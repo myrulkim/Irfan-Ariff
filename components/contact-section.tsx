@@ -68,7 +68,7 @@ export function ContactSection() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">LinkedIn</span>
-                                        <span className="text-xs text-neutral-500 font-mono">in/Nur Irfan</span>
+                                        <span className="text-xs text-neutral-500 font-mono">in/Irfan Ariff</span>
                                     </div>
                                 </div>
                                 <ArrowRight className="w-4 h-4 text-neutral-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transform duration-300" />

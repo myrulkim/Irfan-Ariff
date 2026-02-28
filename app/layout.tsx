@@ -33,13 +33,14 @@ export const metadata: Metadata = {
     title: "Irfan Ariff | Software Developer",
     description:
       "Exploring 2026 internships & building freelance web and mobile solutions. View my work and get in touch.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Irfan Ariff Portfolio" }],
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "Irfan Ariff Portfolio" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Irfan Ariff | Developer Portfolio",
     description:
       "Software Engineering student seeking 2026 internships. Freelance web & mobile dev.",
+    images: ["/api/og"],
   },
   robots: {
     index: true,

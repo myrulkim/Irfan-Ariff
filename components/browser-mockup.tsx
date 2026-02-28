@@ -29,8 +29,9 @@ export function BrowserMockup({ appName = "Browser", url = "localhost:3000", ima
                 {imageSrc ? (
                     <Image
                         src={imageSrc}
-                        alt={appName}
+                        alt={`${appName} - Project Screenshot`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover object-top transition-transform duration-500 ease-out"
                     />
                 ) : children ? (

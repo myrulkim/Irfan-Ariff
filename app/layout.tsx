@@ -11,8 +11,41 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
-  title: "Irfan Ariff | Developer",
-  description: "Minimalist, high-tech personal portfolio.",
+  metadataBase: new URL("https://www.irfanariff.com"),
+  title: {
+    default: "Irfan Ariff | Software Developer",
+    template: "%s | Irfan Ariff",
+  },
+  description:
+    "Software Engineering student at UniKL MIIT actively seeking 2026 internships. Freelance developer offering custom web systems.",
+  keywords: [
+    "Irfan Ariff", "software engineer", "freelance developer",
+    "web development", "mobile app development", "UniKL MIIT",
+    "2026 internship", "Next.js", "Flutter",
+  ],
+  authors: [{ name: "Irfan Ariff" }],
+  creator: "Irfan Ariff",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.irfanariff.com",
+    siteName: "Irfan Ariff Portfolio",
+    title: "Irfan Ariff | Software Developer",
+    description:
+      "Exploring 2026 internships & building freelance web and mobile solutions. View my work and get in touch.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Irfan Ariff Portfolio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Irfan Ariff | Developer Portfolio",
+    description:
+      "Software Engineering student seeking 2026 internships. Freelance web & mobile dev.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export const revalidate = 60; // Ensure Vercel invalidates the cache every 60 seconds
@@ -24,8 +57,39 @@ export default async function RootLayout({
 }>) {
   const profile = await getProfile();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Irfan Ariff",
+        "jobTitle": "Software Engineering Student",
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "UniKL MIIT" },
+        "url": "https://www.irfanariff.com",
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": "Irfan Ariff — Freelance Development",
+        "provider": { "@type": "Person", "name": "Irfan Ariff" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Systems" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } }
+          ]
+        }
+      }
+    ]
+  };
+
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={cn(
         "min-h-screen bg-black font-sans antialiased text-white relative overflow-x-hidden selection:bg-white selection:text-black",
         inter.variable,

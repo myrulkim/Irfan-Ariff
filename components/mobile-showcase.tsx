@@ -37,6 +37,7 @@ export function MobileShowcase({ primaryColor = "bg-neutral-800", image1, image2
                                 src={image2}
                                 alt={`${alt} Back`}
                                 fill
+                                sizes="150px"
                                 className="object-cover object-top"
                             />
                         ) : (
@@ -69,6 +70,7 @@ export function MobileShowcase({ primaryColor = "bg-neutral-800", image1, image2
                                 src={image1}
                                 alt={`${alt} Front`}
                                 fill
+                                sizes="150px"
                                 className="object-cover object-top"
                             />
                         ) : (

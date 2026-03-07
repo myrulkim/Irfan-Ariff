@@ -207,11 +207,27 @@ export default function ProjectsAdmin() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Label htmlFor="image_primary" className="text-xs uppercase tracking-wider text-neutral-400">Primary Image</Label>
-                                <Input id="image_primary" name="image_primary" defaultValue={editingProject?.image_primary || ''} className="bg-black/50 border-white/10 text-white text-xs" />
+                                <div className="flex flex-col gap-2">
+                                    {editingProject?.image_primary && (
+                                        <div className="relative w-20 h-20 rounded border border-white/10 overflow-hidden bg-black/50">
+                                            <img src={editingProject.image_primary} alt="Primary" className="w-full h-full object-cover" />
+                                            <input type="hidden" name="existing_image_primary" defaultValue={editingProject.image_primary} />
+                                        </div>
+                                    )}
+                                    <Input id="image_primary" name="image_primary" type="file" accept="image/*" className="bg-black/50 border-white/10 text-white text-xs cursor-pointer file:bg-neutral-800 file:border-none file:text-white file:text-[10px] file:mr-2" />
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="image_secondary" className="text-xs uppercase tracking-wider text-neutral-400">Secondary Image</Label>
-                                <Input id="image_secondary" name="image_secondary" defaultValue={editingProject?.image_secondary || ''} className="bg-black/50 border-white/10 text-white text-xs" />
+                                <div className="flex flex-col gap-2">
+                                    {editingProject?.image_secondary && (
+                                        <div className="relative w-20 h-20 rounded border border-white/10 overflow-hidden bg-black/50">
+                                            <img src={editingProject.image_secondary} alt="Secondary" className="w-full h-full object-cover" />
+                                            <input type="hidden" name="existing_image_secondary" defaultValue={editingProject.image_secondary} />
+                                        </div>
+                                    )}
+                                    <Input id="image_secondary" name="image_secondary" type="file" accept="image/*" className="bg-black/50 border-white/10 text-white text-xs cursor-pointer file:bg-neutral-800 file:border-none file:text-white file:text-[10px] file:mr-2" />
+                                </div>
                             </div>
                         </div>
 

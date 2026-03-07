@@ -14,7 +14,7 @@ interface MobileShowcaseProps {
 
 export function MobileShowcase({ primaryColor = "bg-neutral-800", image1, image2, alt = "Mobile App", scale = 1 }: MobileShowcaseProps) {
     return (
-        <div className="flex items-center justify-center w-full h-[12rem] relative overflow-hidden group-hover/bento:cursor-pointer">
+        <div className="flex items-center justify-center w-full h-[16rem] md:h-full min-h-[16rem] relative overflow-hidden group-hover/bento:cursor-pointer">
             {/* Background Glow */}
             <div className={cn("absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 via-black to-black transition-colors duration-500", primaryColor.replace("bg-", "from-").replace("-500", "-900"))} />
 

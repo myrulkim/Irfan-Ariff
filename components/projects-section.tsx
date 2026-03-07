@@ -91,13 +91,14 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         }
     };
 
-    const renderHeader = (project: ProjectData) => {
+    const renderHeader = (project: ProjectData, isLatest?: boolean) => {
         if (project.category === 'mobile') {
             return <MobileShowcase
-                primaryColor="bg-blue-500"
+                primaryColor="bg-emerald-500"
                 image1={project.image_primary || undefined}
                 image2={project.image_secondary || undefined}
                 alt={project.title}
+                scale={isLatest ? 1.4 : 1}
             />;
         }
         return <BrowserMockup
@@ -146,7 +147,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                                 header={
                                     <>
                                         {isLatest && <LatestBadge />}
-                                        {renderHeader(project)}
+                                        {renderHeader(project, isLatest)}
                                     </>
                                 }
                                 title={<ProjectHeader title={project.title} extension={getExtensionForCategory(project.category)} />}
@@ -180,7 +181,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                                 <BentoGridItem
                                     id={project.slug}
                                     className="h-full border-white/10 bg-neutral-900/50 backdrop-blur-md"
-                                    header={renderHeader(project)}
+                                    header={renderHeader(project, false)}
                                     title={<ProjectHeader title={project.title} extension={getExtensionForCategory(project.category)} />}
                                     description={<span className="text-neutral-400 text-sm whitespace-pre-line">{project.description}</span>}
                                     icon={getIconForCategory(project.category)}

@@ -14,14 +14,14 @@ interface MobileShowcaseProps {
 
 export function MobileShowcase({ primaryColor = "bg-neutral-800", image1, image2, alt = "Mobile App", scale = 1 }: MobileShowcaseProps) {
     return (
-        <div className="flex items-center justify-center w-full h-[22rem] md:h-full min-h-[20rem] relative overflow-hidden group-hover/bento:cursor-pointer">
+        <div className="flex items-center justify-center w-full h-[21rem] md:h-full min-h-[18rem] relative overflow-hidden group-hover/bento:cursor-pointer">
             {/* Background Glow */}
             <div className={cn("absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 via-black to-black transition-colors duration-500", primaryColor.replace("bg-", "from-").replace("-500", "-900"))} />
 
             {/* Inner Container for Fixed Positioning & Scaling */}
             <div
-                className="relative w-[320px] h-[320px] flex items-center justify-center flex-shrink-0 origin-center"
-                style={{ transform: `scale(${scale})` }}
+                className="relative w-[320px] h-[320px] flex items-center justify-center flex-shrink-0 origin-center transition-transform duration-500 [--m-scale:0.58] sm:[--m-scale:0.8] md:[--m-scale:1]"
+                style={{ transform: `scale(calc(var(--m-scale) * ${scale}))` } as any}
             >
                 {/* Frame 2 (Back) - Secondary Feature */}
                 <motion.div

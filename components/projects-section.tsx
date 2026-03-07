@@ -98,7 +98,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 image1={project.image_primary || undefined}
                 image2={project.image_secondary || undefined}
                 alt={project.title}
-                scale={isLatest ? 1.15 : 1}
+                scale={isLatest ? 1.8 : 1.25}
             />;
         }
         return <BrowserMockup

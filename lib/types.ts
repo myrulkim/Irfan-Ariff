@@ -55,3 +55,10 @@ export interface ProfileData {
     whatsapp_number: string | null;
     availability_status: string | null;
 }
+
+export interface AnalyticsData {
+    id: number;
+    event_name: string;
+    count: number;
+    updated_at: string;
+}

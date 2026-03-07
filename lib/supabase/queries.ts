@@ -1,5 +1,20 @@
 import { createClient } from '@/lib/supabase/server';
-import { ProjectData, ExperienceData, TechStackData, ProfileData, ServiceData, SiteConfigData } from '@/lib/types';
+import { ProjectData, ExperienceData, TechStackData, ProfileData, ServiceData, SiteConfigData, AnalyticsData } from '@/lib/types';
+
+export async function getAnalytics(): Promise<AnalyticsData[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from('analytics')
+        .select('*')
+        .order('count', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching analytics:', error);
+        return [];
+    }
+
+    return data as AnalyticsData[];
+}
 
 export async function getProjects(): Promise<ProjectData[]> {
     const supabase = await createClient();

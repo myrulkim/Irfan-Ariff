@@ -1,5 +1,6 @@
-import { Terminal } from "lucide-react";
-import { getProjects, getExperience, getTechStack } from "@/lib/supabase/queries";
+import { Terminal, BarChart3, Eye, MousePointer2 } from "lucide-react";
+import { getProjects, getExperience, getTechStack, getAnalytics } from "@/lib/supabase/queries";
+import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
 
 export const revalidate = 0; // Always fetch fresh on admin pages
 
@@ -7,9 +8,10 @@ export default async function AdminOverview() {
     const projects = await getProjects();
     const experience = await getExperience();
     const techStack = await getTechStack();
+    const analytics = await getAnalytics();
 
     return (
-        <div className="space-y-8 text-neutral-300">
+        <div className="space-y-10 text-neutral-300">
             <div>
                 <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                     <Terminal className="text-green-500 w-6 h-6" />
@@ -39,6 +41,9 @@ export default async function AdminOverview() {
                     <span className="text-5xl text-white font-mono">{techStack.length}</span>
                 </div>
             </div>
+
+            {/* Analytics Section - Now Real-time Enabled */}
+            <AnalyticsDashboard initialData={analytics} />
         </div>
     );
 }

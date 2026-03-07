@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ProfileData } from "@/lib/types";
+import { trackClick } from "@/lib/actions/analytics";
 
 export function ContactSection({
     profile,
@@ -62,6 +63,7 @@ export function ContactSection({
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block group"
+                            onClick={() => trackClick("whatsapp_connect")}
                         >
                             <div className="flex items-center justify-between p-5 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/15 hover:border-amber-500/50 transition-all duration-300 group-hover:translate-x-1 shadow-[0_0_30px_rgba(245,158,11,0.1)] relative overflow-hidden">
                                 {/* Glassmorphism effect */}
@@ -88,7 +90,13 @@ export function ContactSection({
                         </a>
 
                         {profile.github_url && (
-                            <a href={profile.github_url?.startsWith('http') ? profile.github_url : `https://${profile.github_url}`} target="_blank" rel="noopener noreferrer" className="block group">
+                            <a
+                                href={profile.github_url?.startsWith('http') ? profile.github_url : `https://${profile.github_url}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block group"
+                                onClick={() => trackClick("github_view")}
+                            >
                                 <div className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-neutral-900/50 hover:bg-neutral-900 hover:border-white/20 transition-all duration-300 group-hover:translate-x-1">
                                     <div className="flex items-center gap-4">
                                         <div className="p-2 rounded-md bg-neutral-800 text-white group-hover:bg-white group-hover:text-black transition-colors">
@@ -105,7 +113,13 @@ export function ContactSection({
                         )}
 
                         {profile.linkedin_url && (
-                            <a href={profile.linkedin_url?.startsWith('http') ? profile.linkedin_url : `https://${profile.linkedin_url}`} target="_blank" rel="noopener noreferrer" className="block group">
+                            <a
+                                href={profile.linkedin_url?.startsWith('http') ? profile.linkedin_url : `https://${profile.linkedin_url}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block group"
+                                onClick={() => trackClick("linkedin_view")}
+                            >
                                 <div className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-neutral-900/50 hover:bg-neutral-900 hover:border-white/20 transition-all duration-300 group-hover:translate-x-1">
                                     <div className="flex items-center gap-4">
                                         <div className="p-2 rounded-md bg-neutral-800 text-white group-hover:bg-blue-600 transition-colors">
@@ -122,7 +136,11 @@ export function ContactSection({
                         )}
 
                         {profile.email && (
-                            <a href={`mailto:${profile.email}`} className="block group">
+                            <a
+                                href={`mailto:${profile.email}`}
+                                className="block group"
+                                onClick={() => trackClick("email_click")}
+                            >
                                 <div className="flex items-center justify-between p-4 rounded-lg border border-white/5 bg-neutral-900/50 hover:bg-neutral-900 hover:border-white/20 transition-all duration-300 group-hover:translate-x-1">
                                     <div className="flex items-center gap-4">
                                         <div className="p-2 rounded-md bg-neutral-800 text-white group-hover:bg-red-500 transition-colors">

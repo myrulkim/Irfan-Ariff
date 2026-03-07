@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import { ContactSection } from "@/components/contact-section";
 import { FreelanceServices } from "@/components/freelance-services";
+import { VisitTracker } from "@/components/analytics/visit-tracker";
 import { getProjects, getExperience, getTechStack, getProfile, getServices, getSiteConfig } from "@/lib/supabase/queries";
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -29,6 +30,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-20 w-full relative">
+      <VisitTracker />
       <Hero />
 
       <FreelanceServices

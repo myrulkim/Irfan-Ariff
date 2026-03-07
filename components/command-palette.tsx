@@ -3,6 +3,7 @@
 import { Command, Check, FileText, Mail, MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackClick } from "@/lib/actions/analytics";
 
 export function CommandPalette() {
     const [open, setOpen] = useState(false);
@@ -70,6 +71,7 @@ export function CommandPalette() {
                                     onClick={() => {
                                         navigator.clipboard.writeText("mnifanmohdariff@gmail.com");
                                         setCopied(true);
+                                        trackClick("copy_email");
                                         setTimeout(() => setCopied(false), 2000);
                                     }}
                                 >
@@ -90,6 +92,7 @@ export function CommandPalette() {
                                         // TODO: PLACE YOUR RESUME FILE IN THE 'public' FOLDER
                                         // AND RENAME IT TO 'resume.pdf' OR UPDATE THE PATH BELOW.
                                         // ------------------------------------------------------------------
+                                        trackClick("view_resume");
                                         window.open("/my-cv.pdf", "_blank");
                                         setOpen(false);
                                     }}
@@ -105,7 +108,10 @@ export function CommandPalette() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group flex cursor-pointer items-center rounded-sm px-2 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
-                                    onClick={() => setOpen(false)}
+                                    onClick={() => {
+                                        trackClick("whatsapp_connect");
+                                        setOpen(false);
+                                    }}
                                 >
                                     <MessageSquare className="mr-2 h-4 w-4 text-zinc-500 group-hover:text-green-500 transition-colors" />
                                     <div className="flex flex-col">

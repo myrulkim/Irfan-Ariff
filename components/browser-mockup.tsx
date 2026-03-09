@@ -6,10 +6,11 @@ interface BrowserMockupProps {
     appName?: string;
     url?: string;
     imageSrc?: string;
+    alt?: string;
     children?: React.ReactNode;
 }
 
-export function BrowserMockup({ appName = "Browser", url = "localhost:3000", imageSrc, children }: BrowserMockupProps) {
+export function BrowserMockup({ appName = "Browser", url = "localhost:3000", imageSrc, alt, children }: BrowserMockupProps) {
     return (
         <div className="w-full h-full min-h-[14rem] md:min-h-[10rem] bg-neutral-900 rounded-xl flex flex-col overflow-hidden shadow-2xl relative group-hover/bento:scale-[1.02] transition-transform duration-500 origin-center border border-white/5">
             {/* Search Bar / Header */}
@@ -29,7 +30,7 @@ export function BrowserMockup({ appName = "Browser", url = "localhost:3000", ima
                 {imageSrc ? (
                     <Image
                         src={imageSrc}
-                        alt={`${appName} - Project Screenshot`}
+                        alt={alt || `${appName} - Project Screenshot`}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover object-top transition-transform duration-500 ease-out"

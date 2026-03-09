@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "Irfan Ariff", "software engineer", "freelance developer",
     "web development", "mobile app development", "UniKL MIIT",
     "2026 internship", "Next.js", "Flutter",
+    "Freelance Developer Malaysia", "Software Engineering Intern 2026",
+    "UniKL MIIT Portfolio", "Supabase", "System Architecture"
   ],
   authors: [{ name: "Irfan Ariff" }],
   creator: "Irfan Ariff",
@@ -64,19 +66,30 @@ export default async function RootLayout({
       {
         "@type": "Person",
         "name": "Irfan Ariff",
-        "jobTitle": "Software Engineering Student",
+        "jobTitle": "Software Engineering Student & Freelance Developer",
         "affiliation": { "@type": "CollegeOrUniversity", "name": "UniKL MIIT" },
         "url": "https://www.irfanariff.com",
+        "knowsAbout": ["Next.js", "Flutter", "Supabase", "Tailwind CSS", "System Architecture", "Web Development", "Mobile App Development"],
+        "description": "Software Engineering student at UniKL MIIT and Freelance Developer specializing in custom web and mobile systems for SMEs and Startups."
       },
       {
         "@type": "ProfessionalService",
         "name": "Irfan Ariff — Freelance Development",
+        "image": "https://www.irfanariff.com/api/og",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Malaysia",
+          "addressCountry": "MY"
+        },
         "provider": { "@type": "Person", "name": "Irfan Ariff" },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
+          "name": "Development Services",
           "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Systems" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Systems (Next.js, Supabase)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development (Flutter)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-commerce Redesign & CMS Solutions" } }
           ]
         }
       }

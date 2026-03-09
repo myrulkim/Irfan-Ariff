@@ -41,9 +41,9 @@ export function Hero() {
                     <span className="text-blue-400">const</span>
                     <span className="text-yellow-400">user</span>
                     <span className="text-gray-400">=</span>
-                    <div className="relative inline-flex items-center">
+                    <h1 className="relative inline-flex items-center">
                         <span className="text-green-400">&quot;Irfan Ariff&quot;</span>
-                    </div>
+                    </h1>
                     <span className="text-gray-400">;</span>
                 </div>
 

@@ -7,7 +7,7 @@ export function EducationSection({ education }: { education: EducationData[] }) 
     if (!education || education.length === 0) return null;
 
     return (
-        <section className="w-full relative z-10 py-12 md:py-20 lg:py-24">
+        <section id="education" className="w-full relative z-10 py-12 md:py-20 lg:py-24">
             <div className="max-w-5xl mx-auto px-6 lg:px-12">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

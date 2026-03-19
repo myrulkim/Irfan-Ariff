@@ -18,7 +18,7 @@ export function CertificatesSection({ certificates }: { certificates: Certificat
     if (!certificates || certificates.length === 0) return null;
 
     return (
-        <section className="w-full relative z-10 py-12 md:py-20 lg:py-24">
+        <section id="certificates" className="w-full relative z-10 py-12 md:py-20 lg:py-24">
             <div className="max-w-5xl mx-auto px-6 lg:px-12">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -50,10 +50,31 @@ export function CertificatesSection({ certificates }: { certificates: Certificat
                                 {iconMap[item.icon_tag] || iconMap.award}
                             </div>
 
-                            <div className="relative z-10">
-                                <div className="p-3 bg-black/50 border border-white/10 rounded-xl w-fit mb-4">
-                                    {iconMap[item.icon_tag] || iconMap.award}
-                                </div>
+                            <div className="relative z-10 flex flex-col h-full">
+                                <motion.div 
+                                    whileHover={{ 
+                                        scale: 1.1,
+                                        boxShadow: "0 0 20px rgba(34, 197, 94, 0.4)"
+                                    }}
+                                    className="p-3 bg-black/50 border border-white/10 rounded-xl w-fit mb-4 relative overflow-hidden"
+                                >
+                                    {/* Pulse Background */}
+                                    <motion.div
+                                        animate={{
+                                            scale: [1, 1.5, 1],
+                                            opacity: [0.1, 0.2, 0.1],
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                        }}
+                                        className="absolute inset-0 bg-green-500 rounded-full blur-xl pointer-events-none"
+                                    />
+                                    <div className="relative z-10">
+                                        {iconMap[item.icon_tag] || iconMap.award}
+                                    </div>
+                                </motion.div>
                                 <h3 className="text-white font-bold text-lg mb-1 leading-tight group-hover:text-green-400 transition-colors">
                                     {item.title}
                                 </h3>

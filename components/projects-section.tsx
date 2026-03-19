@@ -117,12 +117,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         />;
     };
 
-    const flagshipBreakdowns: Record<string, string> = {
-        'saf': 'Solved mosque community engagement gaps by implementing a unified notification system and a real-time activity dashboard using Next.js and Firebase.',
-        'jom-sujud': 'Engineered a high-performance prayer time engine specifically optimized for local SME integration, utilizing Supabase for real-time data sync.',
-        'raia-studio': 'Architected a luxury e-commerce experience for an artisan brand, focusing on high-conversion UI and seamless payment integration via Stripe.'
-    };
-
     const getBadgeStyle = (index: number) => {
         const variants = [
             "text-[10px] border-white/20 text-white",
@@ -197,7 +191,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                             const isLatest = project.is_latest;
                             const gridSpanClass = isLatest ? "md:col-span-2 md:row-span-2" : "md:col-span-1";
                             const bentoClass = "border-white/10 bg-neutral-900/50 backdrop-blur-md h-full";
-                            const breakdown = flagshipBreakdowns[project.slug];
 
                             return (
                                 <motion.div
@@ -222,16 +215,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                                         description={
                                             <div className="space-y-4">
                                                 <span className="text-neutral-400 text-sm whitespace-pre-line block">{project.description}</span>
-                                                {breakdown && (
-                                                    <div className="pt-2 border-t border-white/5 space-y-1">
-                                                        <span className="text-[10px] font-mono text-amber-500 uppercase tracking-widest block opacity-70">
-                                                            // technical_breakdown.log
-                                                        </span>
-                                                        <p className="text-[11px] text-neutral-500 leading-relaxed italic">
-                                                            {breakdown}
-                                                        </p>
-                                                    </div>
-                                                )}
                                             </div>
                                         }
                                         icon={getIconForCategory(project.category)}

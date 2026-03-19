@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import { ProjectData, ExperienceData, TechStackData, ProfileData, ServiceData, SiteConfigData, AnalyticsData } from '@/lib/types';
+import { ProjectData, ExperienceData, TechStackData, ProfileData, ServiceData, SiteConfigData, AnalyticsData, EducationData, CertificateData } from '@/lib/types';
 
 export async function getAnalytics(): Promise<AnalyticsData[]> {
     const supabase = await createClient();
@@ -110,4 +110,34 @@ export async function getSiteConfig(): Promise<Record<string, string>> {
     });
 
     return config;
+}
+
+export async function getEducation(): Promise<EducationData[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from('education')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching education:', error);
+        return [];
+    }
+
+    return data as EducationData[];
+}
+
+export async function getCertificates(): Promise<CertificateData[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from('certificates')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching certificates:', error);
+        return [];
+    }
+
+    return data as CertificateData[];
 }

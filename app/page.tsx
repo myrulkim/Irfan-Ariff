@@ -12,7 +12,9 @@ import Image from "next/image";
 import { ContactSection } from "@/components/contact-section";
 import { FreelanceServices } from "@/components/freelance-services";
 import { VisitTracker } from "@/components/analytics/visit-tracker";
-import { getProjects, getExperience, getTechStack, getProfile, getServices, getSiteConfig } from "@/lib/supabase/queries";
+import { getProjects, getExperience, getTechStack, getProfile, getServices, getSiteConfig, getEducation, getCertificates } from "@/lib/supabase/queries";
+import { EducationSection } from "@/components/education-section";
+import { CertificatesSection } from "@/components/certificates-section";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -22,6 +24,8 @@ export default async function Home() {
   const profile = await getProfile();
   const services = await getServices();
   const config = await getSiteConfig();
+  const education = await getEducation();
+  const certificates = await getCertificates();
 
   // Filter projects for commercial showcase
   const commercialProjects = projects.filter(p => p.is_commercial);
@@ -51,6 +55,10 @@ export default async function Home() {
           <Experience experiences={experience} />
         </div>
       </section>
+
+      {/* Education & Certificates */}
+      <EducationSection education={education} />
+      <CertificatesSection certificates={certificates} />
 
       <ContactSection profile={profile} config={config} />
 

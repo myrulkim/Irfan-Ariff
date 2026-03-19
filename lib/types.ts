@@ -62,3 +62,23 @@ export interface AnalyticsData {
     count: number;
     updated_at: string;
 }
+
+export interface EducationData {
+    id: string;
+    institution: string;
+    degree: string;
+    duration: string;
+    details: string[];
+    is_current: boolean;
+    display_order: number;
+}
+
+export interface CertificateData {
+    id: string;
+    title: string;
+    issuer: string;
+    issue_date: string;
+    credential_url: string | null;
+    icon_tag: string;
+    display_order: number;
+}

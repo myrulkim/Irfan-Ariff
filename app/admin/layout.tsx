@@ -13,6 +13,8 @@ const adminLinks = [
     { name: 'Projects', href: '/admin/projects', icon: FileCode2 },
     { name: 'Services', href: '/admin/services', icon: Briefcase },
     { name: 'Experience', href: '/admin/experience', icon: Briefcase },
+    { name: 'Education', href: '/admin/education', icon: Briefcase },
+    { name: 'Certificates', href: '/admin/certificates', icon: Briefcase },
     { name: 'Tech Stack', href: '/admin/tech-stack', icon: Terminal },
     { name: 'Profile', href: '/admin/profile', icon: User },
     { name: 'Config', href: '/admin/config', icon: Terminal },

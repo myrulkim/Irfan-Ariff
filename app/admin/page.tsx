@@ -1,14 +1,18 @@
 import { Terminal, BarChart3, Eye, MousePointer2 } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
 import { getProjects, getExperience, getTechStack, getAnalytics } from "@/lib/supabase/queries";
 import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
 
 export const revalidate = 0; // Always fetch fresh on admin pages
 
 export default async function AdminOverview() {
-    const projects = await getProjects();
-    const experience = await getExperience();
-    const techStack = await getTechStack();
-    const analytics = await getAnalytics();
+    const supabase = await createClient();
+    const [projects, experience, techStack, analytics] = await Promise.all([
+        getProjects(supabase),
+        getExperience(supabase),
+        getTechStack(supabase),
+        getAnalytics(supabase)
+    ]);
 
     return (
         <div className="space-y-10 text-neutral-300">

@@ -15,11 +15,15 @@ import { VisitTracker } from "@/components/analytics/visit-tracker";
 import { getProjects, getExperience, getTechStack, getProfile, getServices, getSiteConfig, getEducation, getCertificates } from "@/lib/supabase/queries";
 import { EducationSection } from "@/components/education-section";
 import { CertificatesSection } from "@/components/certificates-section";
+import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Home() {
-  // Parallel data fetching for better performance
+  // Initialize Supabase client once for elite performance (v3.0)
+  const supabase = await createClient();
+
+  // Parallel data fetching with singleton client
   const [
     projects,
     experience,
@@ -29,13 +33,13 @@ export default async function Home() {
     education,
     certificates
   ] = await Promise.all([
-    getProjects(),
-    getExperience(),
-    getProfile(),
-    getServices(),
-    getSiteConfig(),
-    getEducation(),
-    getCertificates()
+    getProjects(supabase),
+    getExperience(supabase),
+    getProfile(supabase),
+    getServices(supabase),
+    getSiteConfig(supabase),
+    getEducation(supabase),
+    getCertificates(supabase)
   ]);
 
   // Filter projects for commercial showcase

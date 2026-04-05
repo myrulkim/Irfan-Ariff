@@ -13,14 +13,14 @@ export function AlchemistContact({ profile }: AlchemistContactProps) {
     <section id="contact" className="w-full py-40 px-6 md:px-12 lg:px-24 relative z-10">
       <div className="flex flex-col gap-24">
         <h2 className="font-sans font-black text-6xl md:text-[12vw] uppercase tracking-tighter text-white leading-[0.8]">
-          Let&apos;s <span className="text-transparent border-text-cyan outline-white stroke-white" style={{ WebkitTextStroke: "1px white" }}>Transmute</span> <br />
-          Your Vision.
+          Let&apos;s <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>Transmute</span> <br />
+          The Future.
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div className="space-y-12">
             <p className="font-sans text-2xl text-zinc-400 max-w-md leading-tight">
-              Currently open for high-stakes collaborations and custom digital engineering.
+              Alchimistra is currently accepting elite collaborations for 2026. Ready to architect your next mutation?
             </p>
             
             <div className="flex flex-col gap-4">
@@ -43,7 +43,7 @@ export function AlchemistContact({ profile }: AlchemistContactProps) {
               </div>
               <div className="space-y-2">
                 <label className="font-mono text-[8px] text-zinc-600 uppercase tracking-widest">Mission_Brief</label>
-                <textarea rows={4} placeholder="TELL ME ABOUT YOUR PROJECT" className="w-full bg-transparent border-b border-white/10 py-4 font-sans font-bold text-white outline-none focus:border-cyan-500 transition-all resize-none placeholder:text-zinc-800" />
+                <textarea rows={4} placeholder="DESCRIBE YOUR VISION" className="w-full bg-transparent border-b border-white/10 py-4 font-sans font-bold text-white outline-none focus:border-cyan-500 transition-all resize-none placeholder:text-zinc-800" />
               </div>
               
               <button className="w-full py-6 bg-cyan-500 text-black font-sans font-black uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-4 hover:bg-white transition-all duration-500">
@@ -53,6 +53,15 @@ export function AlchemistContact({ profile }: AlchemistContactProps) {
             </form>
           </div>
         </div>
+      </div>
+      
+      <div className="mt-40 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 opacity-20">
+        <span className="font-mono text-[9px] tracking-[0.4em] text-zinc-500">
+          ALCHIMISTRA // THE ELITE ORCHESTRATOR
+        </span>
+        <span className="font-mono text-[9px] tracking-[0.4em] text-zinc-500 uppercase">
+          © 2026 MISSION_CRITICAL
+        </span>
       </div>
     </section>
   );

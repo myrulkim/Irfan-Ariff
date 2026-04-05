@@ -30,10 +30,7 @@ export function AlchemistNavbar() {
   }, []);
 
   const scrollTo = (id: string) => {
-    // Force close menu first
     setIsMenuOpen(false);
-    
-    // Add small delay to allow menu animation to start closing before jumping
     setTimeout(() => {
       if (id === "HOME") {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,11 +48,10 @@ export function AlchemistNavbar() {
       <div className="fixed top-0 left-0 w-full z-[100] px-6 py-8 flex justify-between items-center pointer-events-none">
         <div className="pointer-events-auto">
           <button onClick={() => scrollTo("HOME")} className="font-sans font-black text-xl tracking-tighter text-white">
-            IA<span className="text-cyan-500">.</span>
+            ALCHIMISTRA<span className="text-cyan-500">.</span>
           </button>
         </div>
 
-        {/* Desktop Nav */}
         <nav className="pointer-events-auto hidden md:flex items-center gap-12">
           {["SERVICES", "PROJECTS", "EXPERIENCE", "CONTACT"].map((link) => (
             <button
@@ -71,10 +67,9 @@ export function AlchemistNavbar() {
           ))}
         </nav>
 
-        {/* Mobile Toggle & Status */}
         <div className="pointer-events-auto flex items-center gap-6">
           <div className="hidden md:flex flex-col items-end">
-            <span className="font-mono text-[8px] text-zinc-500 tracking-widest uppercase">Node_Active</span>
+            <span className="font-mono text-[8px] text-zinc-500 tracking-widest uppercase">System_Active</span>
             <span className="font-mono text-[9px] text-white tracking-[0.2em] uppercase">{activeSection}</span>
           </div>
           
@@ -89,7 +84,6 @@ export function AlchemistNavbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -100,7 +94,7 @@ export function AlchemistNavbar() {
             className="fixed inset-0 z-[95] bg-black flex flex-col items-center justify-center p-6 md:hidden"
           >
             <div className="absolute top-10 left-6">
-              <span className="font-mono text-[8px] text-cyan-500 tracking-[0.4em] uppercase">Navigation_Matrix</span>
+              <span className="font-mono text-[8px] text-cyan-500 tracking-[0.4em] uppercase">Alchimistra_Matrix</span>
             </div>
 
             <nav className="flex flex-col items-center gap-8">
@@ -111,7 +105,7 @@ export function AlchemistNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => scrollTo(link.toLowerCase())}
-                  className="font-sans font-black text-5xl tracking-tighter text-white hover:text-cyan-500 transition-colors uppercase active:text-cyan-500"
+                  className="font-sans font-black text-5xl tracking-tighter text-white hover:text-cyan-500 transition-colors uppercase"
                 >
                   {link}
                 </motion.button>
@@ -120,7 +114,7 @@ export function AlchemistNavbar() {
 
             <div className="absolute bottom-10 flex flex-col items-center gap-2">
               <div className="w-1 h-1 rounded-full bg-cyan-500 animate-ping" />
-              <span className="font-mono text-[8px] text-zinc-600 tracking-[0.3em] uppercase">Alchemist_Core_V3.1</span>
+              <span className="font-mono text-[8px] text-zinc-600 tracking-[0.3em] uppercase">Alchimistra_Core_V3.1</span>
             </div>
           </motion.div>
         )}

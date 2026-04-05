@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
-  title: "Irfan Ariff | Digital Alchemist",
-  description: "Turning raw logic into extraordinary digital experiences.",
+  title: "ALCHIMISTRA | Elite Technical Orchestration",
+  description: "Turning raw logic into extraordinary digital ecosystems. Architecting the future of premium tech.",
 };
 
 export default async function RootLayout({

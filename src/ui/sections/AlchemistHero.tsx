@@ -12,11 +12,11 @@ export function AlchemistHero() {
         className="z-10"
       >
         <h1 className="font-sans font-black uppercase tracking-tighter leading-[0.8]">
-          <span className="block text-[15vw] md:text-[12vw] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
+          <span className="block text-[12vw] md:text-[10vw] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
             Digital
           </span>
-          <span className="block text-[15vw] md:text-[12vw] text-white">
-            Alchemist
+          <span className="block text-[15vw] md:text-[13vw] text-white">
+            Alchimistra
           </span>
         </h1>
         
@@ -25,9 +25,9 @@ export function AlchemistHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="max-w-xl text-zinc-400 text-lg md:text-xl font-medium tracking-wide uppercase"
+            className="max-w-xl text-zinc-400 text-lg md:text-xl font-medium tracking-[0.2em] uppercase"
           >
-            Turning raw logic into <span className="text-cyan-400">extraordinary</span> digital experiences.
+            Turning raw logic into <span className="text-cyan-400 italic">extraordinary</span> digital ecosystems.
           </motion.p>
           
           <motion.div 
@@ -39,7 +39,6 @@ export function AlchemistHero() {
         </div>
       </motion.div>
 
-      {/* Floating Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-[120px] animate-pulse delay-1000" />

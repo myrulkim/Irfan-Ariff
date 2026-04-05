@@ -1,0 +1,130 @@
+﻿"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+
+export function AlchemistNavbar() {
+  const [activeSection, setActiveSection] = useState("HOME");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["services", "projects", "experience", "contact"];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < 300 && rect.bottom > 300) {
+            setActiveSection(section.toUpperCase());
+            break;
+          }
+        }
+      }
+      if (window.scrollY < 100) setActiveSection("HOME");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    // Force close menu first
+    setIsMenuOpen(false);
+    
+    // Add small delay to allow menu animation to start closing before jumping
+    setTimeout(() => {
+      if (id === "HOME") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
+  return (
+    <>
+      <div className="fixed top-0 left-0 w-full z-[100] px-6 py-8 flex justify-between items-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <button onClick={() => scrollTo("HOME")} className="font-sans font-black text-xl tracking-tighter text-white">
+            IA<span className="text-cyan-500">.</span>
+          </button>
+        </div>
+
+        {/* Desktop Nav */}
+        <nav className="pointer-events-auto hidden md:flex items-center gap-12">
+          {["SERVICES", "PROJECTS", "EXPERIENCE", "CONTACT"].map((link) => (
+            <button
+              key={link}
+              onClick={() => scrollTo(link.toLowerCase())}
+              className={cn(
+                "font-mono text-[9px] tracking-[0.4em] transition-all duration-300",
+                activeSection === link ? "text-cyan-400" : "text-zinc-600 hover:text-white"
+              )}
+            >
+              {link}
+            </button>
+          ))}
+        </nav>
+
+        {/* Mobile Toggle & Status */}
+        <div className="pointer-events-auto flex items-center gap-6">
+          <div className="hidden md:flex flex-col items-end">
+            <span className="font-mono text-[8px] text-zinc-500 tracking-widest uppercase">Node_Active</span>
+            <span className="font-mono text-[9px] text-white tracking-[0.2em] uppercase">{activeSection}</span>
+          </div>
+          
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-full md:hidden"
+          >
+            {isMenuOpen ? <X className="w-4 h-4 text-white" /> : <Menu className="w-4 h-4 text-white" />}
+          </button>
+
+          <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse hidden md:block" />
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ type: "spring", damping: 35, stiffness: 300 }}
+            className="fixed inset-0 z-[95] bg-black flex flex-col items-center justify-center p-6 md:hidden"
+          >
+            <div className="absolute top-10 left-6">
+              <span className="font-mono text-[8px] text-cyan-500 tracking-[0.4em] uppercase">Navigation_Matrix</span>
+            </div>
+
+            <nav className="flex flex-col items-center gap-8">
+              {["SERVICES", "PROJECTS", "EXPERIENCE", "CONTACT"].map((link, index) => (
+                <motion.button
+                  key={link}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => scrollTo(link.toLowerCase())}
+                  className="font-sans font-black text-5xl tracking-tighter text-white hover:text-cyan-500 transition-colors uppercase active:text-cyan-500"
+                >
+                  {link}
+                </motion.button>
+              ))}
+            </nav>
+
+            <div className="absolute bottom-10 flex flex-col items-center gap-2">
+              <div className="w-1 h-1 rounded-full bg-cyan-500 animate-ping" />
+              <span className="font-mono text-[8px] text-zinc-600 tracking-[0.3em] uppercase">Alchemist_Core_V3.1</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

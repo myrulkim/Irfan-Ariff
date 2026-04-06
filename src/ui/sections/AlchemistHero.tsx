@@ -9,8 +9,23 @@ export function AlchemistHero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        className="z-10"
+        className="z-10 flex flex-col items-center"
       >
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 mb-8"
+        >
+          <div className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+          </div>
+          <span className="font-mono text-[9px] text-cyan-400 uppercase tracking-widest">
+            Open_To_Collaboration
+          </span>
+        </motion.div>
+
         <h1 className="font-sans font-black uppercase tracking-tighter leading-[0.8]">
           <span className="block text-[12vw] md:text-[10vw] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
             Digital
@@ -29,6 +44,31 @@ export function AlchemistHero() {
           >
             Turning raw logic into <span className="text-cyan-400 italic">extraordinary</span> digital ecosystems.
           </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="max-w-2xl text-zinc-500 text-sm md:text-base font-sans leading-relaxed tracking-wide"
+          >
+            I don't just build applications. I architect systems that think, scale, and outlast their competition.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="mt-6"
+          >
+            <a 
+              href="https://wa.me/60183823063?text=Hello%20Irfan,%20I%20saw%20your%20portfolio..." 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-white text-black font-sans font-black uppercase text-xs tracking-[0.2em] hover:bg-cyan-500 hover:text-white hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300"
+            >
+              DIRECT_INQUIRY
+            </a>
+          </motion.div>
           
           <motion.div 
             initial={{ width: 0 }}

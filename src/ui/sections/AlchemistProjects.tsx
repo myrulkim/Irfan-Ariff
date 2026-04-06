@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -62,7 +62,7 @@ export function AlchemistProjects({ projects }: AlchemistProjectsProps) {
 
                 <div className="flex flex-wrap gap-3">
                   {project.tech_stack?.slice(0, 4).map((tech) => (
-                    <span key={tech} className="px-3 py-1 border border-white/10 font-mono text-[9px] text-zinc-500 uppercase tracking-widest">
+                    <span key={tech} className="px-3 py-1 border border-white/10 font-mono text-[9px] text-zinc-400 uppercase tracking-widest bg-white/[0.02]">
                       {tech}
                     </span>
                   ))}

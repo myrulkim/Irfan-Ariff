@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 
@@ -43,6 +43,23 @@ export function AlchemistHero() {
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-[120px] animate-pulse delay-1000" />
       </div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer"
+        onClick={() => {
+          document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+      >
+        <span className="font-mono text-[8px] tracking-[0.4em] text-zinc-500 uppercase">Scroll</span>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="w-[1px] h-12 bg-gradient-to-b from-cyan-500 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 }

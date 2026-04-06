@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ExperienceData } from "@/lib/types";
@@ -30,7 +30,7 @@ export function AlchemistExperience({ experiences }: AlchemistExperienceProps) {
               className="group grid grid-cols-1 md:grid-cols-12 gap-12 py-16 border-b border-white/5 hover:bg-white/[0.01] transition-all duration-500 px-4 items-start"
             >
               <div className="md:col-span-2">
-                <span className="font-mono text-xs text-zinc-600 group-hover:text-cyan-500 transition-colors">
+                <span className="font-mono text-xs text-zinc-400 group-hover:text-cyan-400 transition-colors">
                   [{exp.date_range}]
                 </span>
               </div>

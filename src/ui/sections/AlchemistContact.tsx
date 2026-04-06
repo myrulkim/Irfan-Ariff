@@ -49,7 +49,7 @@ export function AlchemistContact({ profile }: AlchemistContactProps) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-12 p-12 bg-white/[0.02] border border-white/5 backdrop-blur-3xl">
+          <div className="flex flex-col gap-12 p-8 md:p-12 bg-white/[0.02] border border-white/5 backdrop-blur-3xl">
             <form action={formAction} className="space-y-8">
               <div className="space-y-2">
                 <label htmlFor="name" className="font-mono text-10px text-zinc-400 uppercase tracking-widest">Identify_Self</label>
@@ -100,7 +100,7 @@ function SubmitButton() {
     <button 
       disabled={pending}
       type="submit"
-      className="w-full mt-4 py-5 bg-cyan-500 text-black font-sans font-black uppercase text-sm tracking-[0.3em] flex items-center justify-center gap-4 hover:bg-white hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-500 group disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full mt-4 py-4 md:py-5 bg-cyan-500 text-black font-sans font-black uppercase text-[10px] md:text-sm tracking-[0.1em] md:tracking-[0.3em] flex items-center justify-center gap-2 md:gap-4 hover:bg-white hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-500 group disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
     >
       {pending ? (
         <>
@@ -114,7 +114,7 @@ function SubmitButton() {
       ) : (
         <>
           INITIATE_TRANSMUTATION
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
         </>
       )}
     </button>

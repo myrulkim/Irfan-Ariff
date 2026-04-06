@@ -117,7 +117,13 @@ export function AlchemistNavbar() {
             transition={{ type: "spring", damping: 35, stiffness: 300 }}
             className="fixed inset-0 z-[95] bg-black flex flex-col items-center justify-center p-6 md:hidden"
           >
-            <div className="absolute top-10 left-6">
+            {/* Vertical Blueprint Label */}
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 origin-left hidden sm:block">
+              <span className="font-mono text-[8px] text-cyan-500/40 tracking-[0.6em] uppercase whitespace-nowrap">Alchimistra_Matrix_System</span>
+            </div>
+
+            {/* Mobile-only centered label above navigation */}
+            <div className="mb-12 sm:hidden">
               <span className="font-mono text-[8px] text-cyan-500 tracking-[0.4em] uppercase">Alchimistra_Matrix</span>
             </div>
 

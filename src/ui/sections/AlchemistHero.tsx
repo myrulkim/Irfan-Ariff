@@ -42,7 +42,7 @@ export function AlchemistHero() {
             transition={{ delay: 0.5, duration: 1 }}
             className="max-w-xl text-zinc-400 text-lg md:text-xl font-medium tracking-[0.2em] uppercase"
           >
-            Turning raw logic into <span className="text-cyan-400 italic">extraordinary</span> digital ecosystems.
+            Building high-performance <span className="text-cyan-400 italic">digital products</span> that scale your business.
           </motion.p>
 
           <motion.p
@@ -51,7 +51,7 @@ export function AlchemistHero() {
             transition={{ delay: 0.8, duration: 1 }}
             className="max-w-2xl text-zinc-500 text-sm md:text-base font-sans leading-relaxed tracking-wide"
           >
-            I don't just build applications. I architect systems that think, scale, and outlast their competition.
+            Alchimistra is a premium digital studio that turns complex business ideas into high-performance web and mobile solutions.
           </motion.p>
           
           <motion.div
@@ -66,7 +66,7 @@ export function AlchemistHero() {
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white text-black font-sans font-black uppercase text-xs tracking-[0.2em] hover:bg-cyan-500 hover:text-white hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300"
             >
-              DIRECT_INQUIRY
+              START_PROJECT
             </a>
           </motion.div>
           

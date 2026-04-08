@@ -19,10 +19,10 @@ export function AlchemistProjects({ projects }: AlchemistProjectsProps) {
       
       <div className="flex flex-col gap-32 relative z-10">
         <div className="space-y-4">
-          <span className="font-mono text-[10px] tracking-[0.4em] text-cyan-500 uppercase">Mutation_Registry</span>
+          <span className="font-mono text-[10px] tracking-[0.4em] text-cyan-500 uppercase">Selected_Works</span>
           <h2 className="font-sans font-black text-6xl md:text-9xl uppercase tracking-tighter text-white leading-none">
-            Successful <br />
-            Mutations.
+            Featured <br />
+            Projects.
           </h2>
         </div>
 
@@ -77,7 +77,7 @@ export function AlchemistProjects({ projects }: AlchemistProjectsProps) {
                     target="_blank"
                     className="inline-flex items-center gap-4 py-4 px-8 bg-white text-black font-sans font-black uppercase text-[10px] tracking-[0.2em] hover:bg-cyan-500 hover:text-white transition-all duration-300"
                   >
-                    ACCESS_PROJECT
+                    VIEW_PROJECT
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 )}

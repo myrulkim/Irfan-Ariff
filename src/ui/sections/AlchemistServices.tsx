@@ -1,26 +1,55 @@
-﻿"use client";
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ServiceData } from "@/lib/types";
 import { Zap } from "lucide-react";
+import React, { MouseEvent as ReactMouseEvent } from "react";
 
 interface AlchemistServicesProps {
   services: ServiceData[];
 }
 
 export function AlchemistServices({ services }: AlchemistServicesProps) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 700 };
+  const mouseXSpring = useSpring(mouseX, springConfig);
+  const mouseYSpring = useSpring(mouseY, springConfig);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: ReactMouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  const maskImage = useMotionTemplate`radial-gradient(450px circle at ${mouseXSpring}px ${mouseYSpring}px, black 0%, transparent 100%)`;
+
   return (
-    <section id="services" className="w-full py-40 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-[#030303] to-[#0a0a0a] relative z-10 overflow-hidden">
-      {/* Animated Background Grid Pattern */}
-      <div className="absolute inset-0 bg-blueprint-grid opacity-60 pointer-events-none" />
+    <section 
+      id="services" 
+      onMouseMove={handleMouseMove}
+      className="w-full py-40 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-[#030303] to-[#0a0a0a] relative z-10 overflow-hidden group/section"
+    >
+      {/* Animated Background Grid Pattern with Spotlight Mask */}
+      <motion.div 
+        style={{
+          maskImage,
+          WebkitMaskImage: maskImage,
+        }}
+        className="absolute inset-0 bg-blueprint-grid opacity-40 pointer-events-none transition-opacity duration-500 group-hover/section:opacity-70" 
+      />
+      
+      {/* Base Grid (Very Faint) */}
+      <div className="absolute inset-0 bg-blueprint-grid opacity-[0.03] pointer-events-none" />
       
       <div className="flex flex-col gap-20 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <h2 className="font-sans font-black text-6xl md:text-8xl uppercase tracking-tighter text-white">
-            The <span className="text-cyan-500">Arsenal.</span>
+            Our <span className="text-cyan-500">Services.</span>
           </h2>
           <p className="max-w-xs font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase leading-relaxed">
-            Specialized modules optimized for high-velocity digital transformation.
+            Specialized development solutions tailored for growth and performance.
           </p>
         </div>
 
@@ -39,6 +68,17 @@ export function AlchemistServices({ services }: AlchemistServicesProps) {
                 0{index + 1}
               </div>
 
+              {/* Glowing Border Beam Layer */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute inset-0 border border-cyan-500/20" />
+                <motion.div 
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_300deg,rgba(6,182,212,0.4)_360deg)] opacity-40"
+                />
+              </div>
+
               <div className="flex flex-col gap-8 relative z-10">
                 <div className="w-10 h-10 flex items-center justify-center bg-cyan-500/10 border border-cyan-500/20">
                   <Zap className="w-4 h-4 text-cyan-400" />
@@ -48,9 +88,17 @@ export function AlchemistServices({ services }: AlchemistServicesProps) {
                   <h3 className="font-sans font-black text-2xl uppercase tracking-tighter text-white group-hover:text-cyan-400 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="font-sans text-zinc-400 leading-relaxed max-w-md">
+                  <p className="font-sans text-zinc-400 leading-relaxed max-w-md text-sm md:text-base">
                     {service.description}
                   </p>
+                </div>
+
+                {/* Corner Decorative Elements */}
+                <div className="absolute top-0 right-0 w-8 h-8 pointer-events-none overflow-hidden">
+                  <div className="absolute top-[-1px] right-[-1px] w-2 h-2 bg-cyan-500/20 border-r border-t border-cyan-500/40" />
+                </div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 pointer-events-none overflow-hidden">
+                  <div className="absolute bottom-[-1px] left-[-1px] w-2 h-2 bg-cyan-500/20 border-l border-b border-cyan-500/40" />
                 </div>
               </div>
             </motion.div>

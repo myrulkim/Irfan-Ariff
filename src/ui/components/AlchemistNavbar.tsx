@@ -90,7 +90,7 @@ export function AlchemistNavbar() {
                   exit={{ opacity: 0, width: 0 }}
                   className="hidden md:flex flex-col items-end overflow-hidden whitespace-nowrap"
                 >
-                  <span className="font-mono text-[8px] text-zinc-400 tracking-widest uppercase">System_Active</span>
+                  <span className="font-mono text-[8px] text-zinc-400 tracking-widest uppercase">Location</span>
                   <span className="font-mono text-[9px] text-white tracking-[0.2em] uppercase">{activeSection}</span>
                 </motion.div>
               )}
@@ -144,7 +144,7 @@ export function AlchemistNavbar() {
 
             <div className="absolute bottom-10 flex flex-col items-center gap-2">
               <div className="w-1 h-1 rounded-full bg-cyan-500 animate-ping" />
-              <span className="font-mono text-[8px] text-zinc-600 tracking-[0.3em] uppercase">Alchimistra_Core_V3.1</span>
+              <span className="font-mono text-[8px] text-zinc-600 tracking-[0.3em] uppercase">Alchimistra Studio</span>
             </div>
           </motion.div>
         )}

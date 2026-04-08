@@ -15,10 +15,10 @@ export function AlchemistExperience({ experiences }: AlchemistExperienceProps) {
       
       <div className="flex flex-col gap-24 relative z-10">
         <div className="space-y-4">
-          <span className="font-mono text-[10px] tracking-[0.4em] text-cyan-500 uppercase">Deployment_History</span>
+          <span className="font-mono text-[10px] tracking-[0.4em] text-cyan-500 uppercase">Track_Record</span>
           <h2 className="font-sans font-black text-6xl md:text-9xl uppercase tracking-tighter text-white leading-none">
-            Temporal <br />
-            Archives.
+            Work <br />
+            History.
           </h2>
         </div>
 

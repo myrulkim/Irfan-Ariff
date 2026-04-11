@@ -14,6 +14,7 @@ import {
 } from "@/lib/supabase/queries";
 
 import { CommandPalette } from "@/components/command-palette";
+import { AlchemistLayout } from "@/src/ui/layout/AlchemistLayout";
 
 export const revalidate = 60;
 
@@ -35,21 +36,23 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="flex flex-col w-full max-w-[100vw] relative overflow-x-hidden">
-      <VisitTracker />
-      
-      {/* OPERATION ALCHEMIST: THE COMPLETE STRIKE */}
-      <AlchemistHero />
-      
-      <AlchemistServices services={services} />
+    <AlchemistLayout>
+      <div className="flex flex-col w-full max-w-[100vw] relative overflow-x-hidden">
+        <VisitTracker />
+        
+        {/* OPERATION ALCHEMIST: THE COMPLETE STRIKE */}
+        <AlchemistHero />
+        
+        <AlchemistServices services={services} />
 
-      <AlchemistProjects projects={projects} />
+        <AlchemistProjects projects={projects} />
 
-      <AlchemistExperience experiences={experience} />
+        <AlchemistExperience experiences={experience} />
 
-      <AlchemistContact profile={profile} />
+        <AlchemistContact profile={profile} />
 
-      <CommandPalette />
-    </div>
+        <CommandPalette />
+      </div>
+    </AlchemistLayout>
   );
 }

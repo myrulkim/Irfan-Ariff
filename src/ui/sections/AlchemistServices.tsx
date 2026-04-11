@@ -3,7 +3,8 @@
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ServiceData } from "@/lib/types";
 import { Zap } from "lucide-react";
-import React, { MouseEvent as ReactMouseEvent } from "react";
+import React, { MouseEvent as ReactMouseEvent, useEffect } from "react";
+import anime from "animejs/lib/anime.es.js";
 
 interface AlchemistServicesProps {
   services: ServiceData[];
@@ -24,6 +25,24 @@ export function AlchemistServices({ services }: AlchemistServicesProps) {
   }
 
   const maskImage = useMotionTemplate`radial-gradient(450px circle at ${mouseXSpring}px ${mouseYSpring}px, black 0%, transparent 100%)`;
+
+  const triggerBorderDraw = (id: string | number) => {
+    const path = document.querySelector(`#service-svg-${id} path`) as SVGPathElement;
+    if (path) {
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
+      
+      anime({
+        targets: path,
+        strokeDashoffset: [length, 0],
+        opacity: [0, 1],
+        easing: 'easeInOutSine',
+        duration: 1200,
+        delay: 300,
+      });
+    }
+  };
 
   return (
     <section 
@@ -57,12 +76,30 @@ export function AlchemistServices({ services }: AlchemistServicesProps) {
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              onViewportEnter={() => triggerBorderDraw(service.id)}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
               className="group relative p-12 bg-white/[0.02] border border-white/5 backdrop-blur-xl hover:border-cyan-500/30 transition-all duration-500 overflow-hidden"
             >
+              {/* SVG Technical Border Drawing Layer */}
+              <svg 
+                id={`service-svg-${service.id}`}
+                className="absolute inset-0 w-full h-full pointer-events-none" 
+                viewBox="0 0 100 100" 
+                preserveAspectRatio="none"
+              >
+                <path 
+                  d="M 0.5,0.5 L 99.5,0.5 L 99.5,99.5 L 0.5,99.5 Z" 
+                  fill="none" 
+                  stroke="rgba(6, 182, 212, 0.8)" 
+                  strokeWidth="1"
+                  vectorEffect="non-scaling-stroke"
+                  className="service-border-path opacity-0"
+                />
+              </svg>
+
               {/* Decorative Background ID */}
               <div className="absolute -bottom-4 -right-4 font-sans font-black text-9xl text-white/[0.02] pointer-events-none group-hover:text-cyan-500/[0.05] transition-colors duration-500">
                 0{index + 1}

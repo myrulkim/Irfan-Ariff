@@ -6,70 +6,69 @@ import anime from 'animejs/lib/anime.es.js';
 
 export function AlchemistHero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-[]{}|;:,.<>/?";
-    
-    // TRIGGER DECRYPTION FOR ALL CHARACTERS
-    const elements = document.querySelectorAll('.char');
-    elements.forEach((el, i) => {
-      const originalText = el.textContent || "";
-      anime({
-        targets: el,
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 800,
-        delay: (el, idx) => {
-          // Since we are iterating manually, we need to match the index
-          // We'll just use the index of the element in the total list
-          return anime.random(0, 500) + 500; // Let's stick to true random for decryption chaos
-        },
-        easing: 'easeOutExpo',
-        update: function(anim) {
-          if (anim.progress < 100) {
-            if (Math.random() > 0.6) {
-              el.textContent = chars[Math.floor(Math.random() * chars.length)];
-            }
-          } else {
-            el.textContent = originalText;
-          }
-        }
-      });
-    });
-
-    // ELITE TYPOGRAPHY REVEAL STRATORY
+    // ELITE TYPOGRAPHY REVEAL STRATORY - SYNCED WITH PRELOADER
     const tl = anime.timeline({
       easing: 'easeOutExpo',
       duration: 1200,
     });
 
-    // 4. Description Reveal (Synced with Chaos end)
+    // 1. Line 1 (Digital) - Starts at 3500ms
+    tl.add({
+      targets: '.hero-line-1 .char',
+      translateY: [100, 0],
+      opacity: [0, 1],
+      rotateX: [45, 0],
+      delay: anime.stagger(40, { from: 'center', start: 3500 }),
+    }, 0);
+
+    // 2. Line 2 (Alchimistra)
+    tl.add({
+      targets: '.hero-line-2 .char',
+      translateY: [150, 0],
+      opacity: [0, 1],
+      rotateX: [60, 0],
+      delay: anime.stagger(30, { from: 'center', start: 3800 }),
+    }, 100);
+
+    // 3. Description Reveal
     tl.add({
       targets: '.hero-desc',
       translateY: [20, 0],
       opacity: [0, 1],
       duration: 1000,
       easing: 'easeOutQuart',
-    }, 1500);
+    }, 4200);
 
-    // 5. Strike Line
+    // 4. Strike Line
     tl.add({
       targets: '.hero-strike',
       width: [0, 100],
       opacity: [0, 1],
       duration: 800,
       easing: 'easeInOutQuad',
-    }, 1800);
+    }, 4500);
 
-    // 6. Contact Button
+    // 5. Contact Button
     tl.add({
       targets: '.hero-cta',
       translateY: [20, 0],
       opacity: [0, 1],
       duration: 800,
-    }, 1600);
+    }, 4300);
+
+    // 6. Perspective Warp for the whole stage
+    anime({
+      targets: '.hero-stage',
+      rotateX: [30, 0],
+      rotateY: [-10, 0],
+      scale: [0.7, 1],
+      opacity: [0, 1],
+      duration: 2500,
+      delay: 3500, // Sync with preloader
+      easing: 'easeOutExpo'
+    });
 
   }, []);
 
@@ -83,7 +82,7 @@ export function AlchemistHero() {
 
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-      <div className="z-10 flex flex-col items-center">
+      <div className="hero-stage z-10 flex flex-col items-center" style={{ perspective: '2000px', transformStyle: 'preserve-3d' }}>
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,7 +94,7 @@ export function AlchemistHero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </div>
           <span className="font-mono text-[9px] text-cyan-400 uppercase tracking-widest">
-            Open_To_Collaboration
+            Operation: Alchemist Strike // Site_Initialization_Complete
           </span>
         </motion.div>
 
@@ -158,4 +157,3 @@ export function AlchemistHero() {
     </section>
   );
 }
-

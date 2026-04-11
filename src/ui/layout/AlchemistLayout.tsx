@@ -14,13 +14,9 @@ export function AlchemistLayout({ children }: AlchemistLayoutProps) {
   return (
     <>
       {loading && <AlchemistPreloader onComplete={() => setLoading(false)} />}
-      
-      <div 
-        className="transition-opacity duration-1000"
-        style={{ opacity: loading ? 0 : 1, visibility: loading ? 'hidden' : 'visible' }}
-      >
+      <main className="w-full">
         {children}
-      </div>
+      </main>
     </>
   );
 }

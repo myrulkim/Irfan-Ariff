@@ -1,13 +1,11 @@
 import { AlchemistHero } from "@/src/ui/sections/AlchemistHero";
 import { AlchemistServices } from "@/src/ui/sections/AlchemistServices";
 import { AlchemistProjects } from "@/src/ui/sections/AlchemistProjects";
-import { AlchemistExperience } from "@/src/ui/sections/AlchemistExperience";
 import { AlchemistContact } from "@/src/ui/sections/AlchemistContact";
 import { VisitTracker } from "@/components/analytics/visit-tracker";
 import { createClient } from "@/lib/supabase/server";
 import { 
   getProjects, 
-  getExperience, 
   getProfile, 
   getServices, 
   getSiteConfig
@@ -23,13 +21,11 @@ export default async function Home() {
 
   const [
     projects,
-    experience,
     profile,
     services,
     config
   ] = await Promise.all([
     getProjects(supabase),
-    getExperience(supabase),
     getProfile(supabase),
     getServices(supabase),
     getSiteConfig(supabase)
@@ -37,7 +33,7 @@ export default async function Home() {
 
   return (
     <AlchemistLayout>
-      <div className="flex flex-col w-full max-w-[100vw] relative overflow-x-hidden">
+      <div className="block w-full max-w-[100vw] relative">
         <VisitTracker />
         
         {/* OPERATION ALCHEMIST: THE COMPLETE STRIKE */}
@@ -46,8 +42,6 @@ export default async function Home() {
         <AlchemistServices services={services} />
 
         <AlchemistProjects projects={projects} />
-
-        <AlchemistExperience experiences={experience} />
 
         <AlchemistContact profile={profile} />
 

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -21,9 +21,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth overflow-x-hidden max-w-[100vw]">
+    <html lang="en" className="dark scroll-smooth">
       <body className={cn(
-        "min-h-screen bg-black font-sans antialiased text-white relative overflow-x-hidden max-w-[100vw] selection:bg-cyan-500/30 selection:text-white",
+        "min-h-screen bg-black font-sans antialiased text-white relative selection:bg-cyan-500/30 selection:text-white",
         inter.variable,
         jetbrainsMono.variable
       )}>

@@ -13,7 +13,7 @@ export function AlchemistNavbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ["services", "projects", "experience", "contact"];
+      const sections = ["services", "projects", "contact"];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -67,7 +67,7 @@ export function AlchemistNavbar() {
           </div>
 
           <nav className="pointer-events-auto hidden md:flex items-center gap-8 lg:gap-12 shrink-0">
-            {["SERVICES", "PROJECTS", "EXPERIENCE", "CONTACT"].map((link) => (
+            {["SERVICES", "PROJECTS", "CONTACT"].map((link) => (
               <button
                 key={link}
                 onClick={() => scrollTo(link.toLowerCase())}
@@ -128,7 +128,7 @@ export function AlchemistNavbar() {
             </div>
 
             <nav className="flex flex-col items-center gap-8">
-              {["SERVICES", "PROJECTS", "EXPERIENCE", "CONTACT"].map((link, index) => (
+              {["SERVICES", "PROJECTS", "CONTACT"].map((link, index) => (
                 <motion.button
                   key={link}
                   initial={{ opacity: 0, y: 20 }}

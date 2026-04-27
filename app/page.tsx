@@ -1,4 +1,5 @@
 import { AlchemistHero } from "@/src/ui/sections/AlchemistHero";
+import { AlchemistAbout } from "@/src/ui/sections/AlchemistAbout";
 import { AlchemistServices } from "@/src/ui/sections/AlchemistServices";
 import { AlchemistProcess } from "@/src/ui/sections/AlchemistProcess";
 import { AlchemistProjects } from "@/src/ui/sections/AlchemistProjects";
@@ -33,17 +34,17 @@ export default async function Home() {
 
   return (
     <AlchemistLayout>
-      <div className="block w-full max-w-[100vw] relative bg-black">
+      <div className="block w-full max-w-[100vw] relative bg-white">
         <VisitTracker />
         
         {/* OPERATION ALCHEMIST: THE COMPLETE STRIKE */}
         <AlchemistHero />
         
-        <AlchemistServices services={services} />
-
-        <AlchemistProcess />
-
         <AlchemistProjects projects={projects} />
+
+        <AlchemistAbout />
+
+        <AlchemistServices services={services} />
 
         <AlchemistContact profile={profile} />
       </div>

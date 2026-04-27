@@ -1,53 +1,47 @@
 "use client";
 
-import Image from "next/image";
+import { motion } from "framer-motion";
 import { ProjectData } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { RevealImage } from "../components/canvas/RevealImage";
+import { ArrowUpRight } from "lucide-react";
 
 export function AlchemistProjects({ projects }: { projects: ProjectData[] }) {
-  const displayProjects = projects.slice(0, 4);
+  // We prioritize the first 6 projects for the corporate grid strike
+  const displayProjects = projects.slice(0, 6);
 
   return (
-    <section id="portfolio" className="py-32 px-6 md:px-12 bg-[#131313]">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="flex justify-between items-end mb-16">
-          <h2 className="font-sans text-[1.75rem] text-white tracking-tight">Selected Works</h2>
-          <a href="#" className="font-sans text-[11px] tracking-[0.1em] uppercase text-[#C6C6C6] hover:text-white transition-colors flex items-center space-x-2">
-            <span>View Archive</span>
-            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'wght' 300" }}>arrow_forward</span>
-          </a>
-        </div>
+    <section id="portfolio" className="py-24 px-6 md:px-12 bg-zinc-50 relative overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="max-w-[1440px] mx-auto relative z-10"
+      >
+        <div className="mb-24 text-left">
+          <h2 className="font-sans text-4xl md:text-5xl font-black text-zinc-900 tracking-tighter mb-4 uppercase">Portfolio</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-sans text-[11px] tracking-[0.4em] text-primary uppercase font-bold">Check our Portfolio</span>
+            <div className="w-12 h-[1px] bg-primary" />
+          </div>
+          <p className="font-sans text-base text-zinc-500 font-light max-w-xl">
+            We are currently searching for new collaborations and clients to build impactful digital solutions together.
+          </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {displayProjects.map((project, index) => (
-            <a 
-              key={project.id}
-              href={project.live_url || "#"}
-              target="_blank"
-              className={cn(
-                "group block relative overflow-hidden bg-[#1c1b1b] aspect-[4/3]",
-                index % 2 !== 0 ? "mt-0 md:mt-16" : ""
-              )}
-            >
-              {project.image_primary && (
-                <Image
-                  src={project.image_primary}
-                  alt={project.title}
-                  fill
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0"
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 p-8">
-                <p className="font-sans text-[10px] tracking-[0.1em] uppercase text-[#C6C6C6] mb-2">
-                  {index === 0 ? "Fintech / App Design" : index === 1 ? "E-Commerce / Strategy" : index === 2 ? "Web / Systems" : "Identity / Web"}
-                </p>
-                <h3 className="font-sans text-[1.25rem] text-white">{project.title}</h3>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+          <div className="min-h-[400px] w-full border border-dashed border-zinc-200 flex flex-col items-center justify-center gap-6 p-12 bg-white/50">
+            <div className="w-12 h-12 flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+            </div>
+            <div className="text-center space-y-3">
+              <h3 className="font-sans text-lg font-bold text-zinc-900 uppercase tracking-widest">Searching for New Collaboration</h3>
+              <p className="font-sans text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed tracking-wide uppercase">
+                We are currently open for new projects and elite client partnerships. Ready for the next digital strike.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+    );
+  }

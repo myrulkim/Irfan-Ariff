@@ -10,8 +10,8 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
-  title: "ALCHIMISTRA | Digital Presence",
-  description: "Alchimistra is a premium digital studio turning complex business ideas into high-performance web and mobile solutions.",
+  title: "CBG | Copper Boston Group",
+  description: "Copper Boston Group is a premium digital studio turning complex business ideas into high-performance web and mobile solutions.",
 };
 
 export default async function RootLayout({
@@ -20,12 +20,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="light scroll-smooth">
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
       </head>
       <body className={cn(
-        "min-h-screen bg-[#131313] font-sans antialiased text-white relative selection:bg-white/10 selection:text-white",
+        "min-h-screen bg-white font-sans antialiased text-zinc-900 relative selection:bg-zinc-900/5 selection:text-zinc-900",
         manrope.className,
         jetbrainsMono.variable
       )}>
@@ -34,7 +34,7 @@ export default async function RootLayout({
         <main className="relative flex flex-col w-full min-h-screen">
           {children}
         </main>
-        <Toaster theme="dark" position="bottom-right" />
+        <Toaster theme="light" position="bottom-right" />
       </body>
     </html>
   );

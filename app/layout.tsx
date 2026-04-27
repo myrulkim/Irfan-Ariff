@@ -27,6 +27,7 @@ export default async function RootLayout({
       <body className={cn(
         "min-h-screen bg-white font-sans antialiased text-zinc-900 relative selection:bg-zinc-900/5 selection:text-zinc-900",
         manrope.className,
+        manrope.variable,
         jetbrainsMono.variable
       )}>
         <div className="velvet-grain" />

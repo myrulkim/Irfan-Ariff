@@ -1,24 +1,7 @@
 @import "tailwindcss";
-
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
-
-@theme {
-  --font-sans: "Manrope", sans-serif;
-  --font-mono: var(--font-jetbrains-mono), monospace;
-
-  /* Theme Color Mappings - LIGHT */
-  --color-background: #ffffff;
-  --color-foreground: #09090b;
-  --color-border: rgba(9, 9, 11, 0.1);
-  --color-surface-container: #f4f4f5;
-  --color-on-surface-variant: #71717a;
-  
-  /* Corporate Accent - Amethyst Purple */
-  --color-primary: #8B5CF6;
-  --color-primary-foreground: #ffffff;
-}
 
 :root {
   --radius: 0px;
@@ -34,15 +17,18 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
   body {
-    @apply m-0 p-0 w-full min-h-screen bg-white text-zinc-900 antialiased selection:bg-zinc-900 selection:text-white overflow-x-hidden font-sans;
+    @apply m-0 p-0 w-full min-h-screen bg-white text-zinc-900 antialiased selection:bg-zinc-900 selection:text-white overflow-x-hidden;
+    font-family: var(--font-manrope), sans-serif;
   }
 
-  * { @apply border-border; }
+  h1, h2, h3, h4, h5, h6, p, span, button, a {
+    font-family: var(--font-manrope), sans-serif;
+  }
+
+  * { 
+    border-color: var(--color-border);
+  }
 }
 
 .velvet-grain {
@@ -61,7 +47,8 @@
 }
 
 .text-metadata {
-  @apply font-sans text-[11px] tracking-[0.1em] uppercase text-on-surface-variant;
+  font-family: var(--font-manrope), sans-serif;
+  @apply text-[11px] tracking-[0.1em] uppercase text-zinc-500;
 }
 
 @keyframes reveal {
@@ -71,4 +58,17 @@
 
 .animate-reveal {
   animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@theme {
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  
+  --color-background: #ffffff;
+  --color-foreground: #09090b;
+  --color-border: rgba(9, 9, 11, 0.1);
+  --color-primary: #8B5CF6;
+  --color-primary-foreground: #ffffff;
+  --color-surface-container: #f4f4f5;
+  --color-on-surface-variant: #71717a;
 }
